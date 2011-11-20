@@ -1,1 +1,14 @@
-resultados...
+<table>
+  <tr>
+    <th></th>
+    <th class="ui-widget-header ui-corner-all">Usuário</th>
+    <th class="ui-widget-header ui-corner-all">Texto</th>
+  </tr>
+ {% for b in busca%} 
+  <tr>
+    <td class="ui-widget-content ui-corner-all"><img src="{{ b.profile_image_url}}"/></td>
+    <td class="ui-widget-content ui-corner-all">{{ b.from_user}}</td>
+    <td class="ui-widget-content ui-corner-all">{{ b.text}}</td>
+  </tr>
+  {% endfor %}
+</table>
