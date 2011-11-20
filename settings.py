@@ -1,5 +1,6 @@
 # Django settings for twittertoxml project.
 
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -11,10 +12,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'twittertoxml',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': 'root',                  # Not used with sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -43,9 +44,13 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/var/www/twittertoxml/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -100,14 +105,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'twittertoxml.urls'
+ROOT_URLCONF = 'twitter-to-xml.urls'
+
+ROOT_PATH = os.path.dirname(__file__)
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    '/var/www/twittertoxml/templates'
+    ROOT_PATH + '/templates'
 )
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
